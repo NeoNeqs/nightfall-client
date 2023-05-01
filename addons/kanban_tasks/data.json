@@ -1,0 +1,69 @@
+{
+	"categories": [
+		{
+			"uuid": "76ee30fa-a954-4590-8c38-2ed401619cff",
+			"title": "Task",
+			"color": "70bafa"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "80b8e8dc-5854-47e9-82da-6e5799bda297",
+			"title": "Todo",
+			"tasks": [
+				"bbef1017-d5f8-47b5-942d-9c59a7a060f2",
+				"54d38df4-4f0d-486d-914b-94a86c912827",
+				"2ef99e43-5466-4760-a977-7a8897ab1898"
+			]
+		},
+		{
+			"uuid": "8dfb3b2e-bcb2-477a-9dd0-85a1728f396d",
+			"title": "Doing",
+			"tasks": []
+		},
+		{
+			"uuid": "5869e66e-fdc6-402b-a2fc-274d4e22ac53",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "bbef1017-d5f8-47b5-942d-9c59a7a060f2",
+			"title": "Write Tests",
+			"description": "ItemData#stack_size",
+			"category": "76ee30fa-a954-4590-8c38-2ed401619cff"
+		},
+		{
+			"uuid": "54d38df4-4f0d-486d-914b-94a86c912827",
+			"title": "in-game logger with bbcode ?",
+			"description": "",
+			"category": "76ee30fa-a954-4590-8c38-2ed401619cff"
+		},
+		{
+			"uuid": "2ef99e43-5466-4760-a977-7a8897ab1898",
+			"title": "Comments and doc-strings",
+			"description": "",
+			"category": "76ee30fa-a954-4590-8c38-2ed401619cff"
+		},
+		{
+			"uuid": "f8add0f6-1949-4950-99f4-9986478bba48",
+			"title": "Add SlotData back",
+			"description": "The SlotData Resource is actually needed. One cannot hava quantity in ItemData since it will be shared between all ItemData's (so changing quantity of hp potion will change quantity of all hp potions unless you make them unique). So the solution is to keep SlotData resource (in-between InventoryData and ItemData), make IT unique but keep ItemData resources the same (saved in a res:// with format name-item.tres)",
+			"category": "76ee30fa-a954-4590-8c38-2ed401619cff"
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"80b8e8dc-5854-47e9-82da-6e5799bda297"
+			],
+			[
+				"8dfb3b2e-bcb2-477a-9dd0-85a1728f396d"
+			],
+			[
+				"5869e66e-fdc6-402b-a2fc-274d4e22ac53"
+			]
+		]
+	}
+}

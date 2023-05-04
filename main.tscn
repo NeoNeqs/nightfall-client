@@ -1,39 +1,41 @@
-[gd_scene load_steps=12 format=3 uid="uid://mojic06bqwie"]
+[gd_scene load_steps=13 format=3 uid="uid://mojic06bqwie"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ojmw0"]
 [ext_resource type="PackedScene" uid="uid://d3xi5i6j22rsg" path="res://game_ui/game_ui.tscn" id="2_bl8te"]
 [ext_resource type="PackedScene" uid="uid://1yw42i04nfls" path="res://game/character/character.tscn" id="2_fgvrp"]
-[ext_resource type="Resource" uid="uid://c8bmwqbbib0bb" path="res://game/items/dagger-item.tres" id="3_8pcmu"]
-[ext_resource type="Resource" uid="uid://bqxrssauwnjot" path="res://game/items/hp_potion-item.tres" id="4_cql6q"]
-[ext_resource type="Script" path="res://game/inventory/slot_data.gd" id="4_racu6"]
-[ext_resource type="Script" path="res://game/inventory/inventory_data.gd" id="5_4u18q"]
+[ext_resource type="Script" path="res://game/inventory/data/spell_data.gd" id="3_tjmeo"]
+[ext_resource type="Script" path="res://game/inventory/data/inventory_data.gd" id="4_mobqk"]
+[ext_resource type="Resource" uid="uid://bqxrssauwnjot" path="res://game/items/hp_potion-item.tres" id="5_nhuok"]
+[ext_resource type="Script" path="res://game/inventory/data/slot_data.gd" id="5_ri44i"]
+[ext_resource type="Resource" uid="uid://c8bmwqbbib0bb" path="res://game/items/dagger-item.tres" id="7_qeyps"]
 
-[sub_resource type="Resource" id="Resource_1he5a"]
-script = ExtResource("4_racu6")
-item_data = ExtResource("4_cql6q")
-quantity = 13
-
-[sub_resource type="Resource" id="Resource_cpndd"]
-script = ExtResource("4_racu6")
-item_data = ExtResource("4_cql6q")
+[sub_resource type="Resource" id="Resource_q67hq"]
+script = ExtResource("5_ri44i")
+action_data = ExtResource("5_nhuok")
 quantity = 9
 
-[sub_resource type="Resource" id="Resource_v3ohu"]
-script = ExtResource("4_racu6")
-item_data = ExtResource("3_8pcmu")
+[sub_resource type="Resource" id="Resource_3sa23"]
+script = ExtResource("5_ri44i")
+action_data = ExtResource("5_nhuok")
+quantity = 19
+
+[sub_resource type="Resource" id="Resource_lmap7"]
+script = ExtResource("5_ri44i")
+action_data = ExtResource("7_qeyps")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_hs8w8"]
-script = ExtResource("5_4u18q")
+[sub_resource type="Resource" id="Resource_h4r6m"]
+script = ExtResource("4_mobqk")
 columns = 9
 display_name = ""
-slot_data = Array[ExtResource("4_racu6")]([SubResource("Resource_1he5a"), null, null, SubResource("Resource_cpndd"), null, null, SubResource("Resource_v3ohu"), null, null, null, null, null, null, null, null, null, null, null])
+slot_data = Array[ExtResource("5_ri44i")]([SubResource("Resource_q67hq"), SubResource("Resource_3sa23"), SubResource("Resource_lmap7"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+item_blacklist = Array[Script]([ExtResource("3_tjmeo")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ojmw0")
 
 [node name="Character" parent="." instance=ExtResource("2_fgvrp")]
-inventory_data = SubResource("Resource_hs8w8")
+inventory_data = SubResource("Resource_h4r6m")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

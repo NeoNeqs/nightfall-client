@@ -1,16 +1,16 @@
 extends Resource
 class_name SlotData
 
-@export var item_data: ItemData
+@export var action_data: ActionData
 @export var quantity: int = 1:
 	set = _set_quantity
 
 
 func get_free_space() -> int:
-	return item_data.stack_size - quantity
+	return action_data.max_capacity - quantity
 
 func can_be_stacked_with(other_slot_data: SlotData) -> bool:
-	return item_data == other_slot_data.item_data and get_free_space() > 0
+	return action_data == other_slot_data.action_data and get_free_space() > 0
 
 func transfer_quantity(other_slot_data: SlotData, amount: int) -> SlotData:
 	var max_fill_quantity := get_free_space()
@@ -31,16 +31,19 @@ func take_one() -> int:
 	return fill_quantity
 
 func _set_quantity(new_quantity: int) -> void:
-	if not item_data:
+	if not action_data:
 		Logger.error(Messages.SLOT_DATA_NO_ITEM_DATA % [self])
 		return
+	
 	if new_quantity < 0:
 		quantity = 0
 		Logger.warning(Messages.SLOT_DATA_NO_QUANTITY % [
-			new_quantity, item_data.id, quantity
+			new_quantity, action_data.id, quantity
 		])
 		return
-	if new_quantity > item_data.stack_size:
-		Logger.error(Messages.SLOT_DATA_STACK_SIZE_EXCEEDED % [item_data.stack_size, item_data.id])
+	
+	if new_quantity > action_data.max_capacity:
+		Logger.error(Messages.SLOT_DATA_MAX_CAPACITY_EXCEEDED % [action_data.max_capacity, action_data.id])
 		return
+	
 	quantity = new_quantity

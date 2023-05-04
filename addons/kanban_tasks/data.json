@@ -1,9 +1,24 @@
 {
 	"categories": [
 		{
-			"uuid": "76ee30fa-a954-4590-8c38-2ed401619cff",
-			"title": "Task",
-			"color": "70bafa"
+			"uuid": "ed76b641-1199-4618-be50-5dc9c6b7b3c5",
+			"title": "Logging",
+			"color": "ffae78"
+		},
+		{
+			"uuid": "6af66f8b-501f-4fe7-ab4e-d039af07becf",
+			"title": "Meta",
+			"color": "52ff2e"
+		},
+		{
+			"uuid": "908b53a1-6c56-446a-9c98-29ec3a762855",
+			"title": "Inventory",
+			"color": "0920c2"
+		},
+		{
+			"uuid": "610fbf86-8479-4e9c-a6e0-8d304ce1e634",
+			"title": "Input/Actions",
+			"color": "b9ae00"
 		}
 	],
 	"stages": [
@@ -11,15 +26,19 @@
 			"uuid": "80b8e8dc-5854-47e9-82da-6e5799bda297",
 			"title": "Todo",
 			"tasks": [
-				"bbef1017-d5f8-47b5-942d-9c59a7a060f2",
+				"2ef99e43-5466-4760-a977-7a8897ab1898",
 				"54d38df4-4f0d-486d-914b-94a86c912827",
-				"2ef99e43-5466-4760-a977-7a8897ab1898"
+				"bbc97122-5c8e-4253-9f41-30892b43dba6",
+				"aa86da12-0c85-4886-b1ca-90a0553b2514",
+				"35c92e2f-e505-42bb-a980-1cc6baf44088"
 			]
 		},
 		{
 			"uuid": "8dfb3b2e-bcb2-477a-9dd0-85a1728f396d",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"bbef1017-d5f8-47b5-942d-9c59a7a060f2"
+			]
 		},
 		{
 			"uuid": "5869e66e-fdc6-402b-a2fc-274d4e22ac53",
@@ -31,26 +50,50 @@
 		{
 			"uuid": "bbef1017-d5f8-47b5-942d-9c59a7a060f2",
 			"title": "Write Tests",
-			"description": "ItemData#stack_size",
-			"category": "76ee30fa-a954-4590-8c38-2ed401619cff"
+			"description": "",
+			"category": "6af66f8b-501f-4fe7-ab4e-d039af07becf"
 		},
 		{
 			"uuid": "54d38df4-4f0d-486d-914b-94a86c912827",
-			"title": "in-game logger with bbcode ?",
+			"title": "Make use of bbcode for logging",
 			"description": "",
-			"category": "76ee30fa-a954-4590-8c38-2ed401619cff"
+			"category": "ed76b641-1199-4618-be50-5dc9c6b7b3c5"
 		},
 		{
 			"uuid": "2ef99e43-5466-4760-a977-7a8897ab1898",
 			"title": "Comments and doc-strings",
 			"description": "",
-			"category": "76ee30fa-a954-4590-8c38-2ed401619cff"
+			"category": "6af66f8b-501f-4fe7-ab4e-d039af07becf"
 		},
 		{
 			"uuid": "f8add0f6-1949-4950-99f4-9986478bba48",
 			"title": "Add SlotData back",
 			"description": "The SlotData Resource is actually needed. One cannot hava quantity in ItemData since it will be shared between all ItemData's (so changing quantity of hp potion will change quantity of all hp potions unless you make them unique). So the solution is to keep SlotData resource (in-between InventoryData and ItemData), make IT unique but keep ItemData resources the same (saved in a res:// with format name-item.tres)",
-			"category": "76ee30fa-a954-4590-8c38-2ed401619cff"
+			"category": "ed76b641-1199-4618-be50-5dc9c6b7b3c5"
+		},
+		{
+			"uuid": "dfece737-6a2e-49ac-abc7-d4318130653b",
+			"title": "New task",
+			"description": "",
+			"category": "ed76b641-1199-4618-be50-5dc9c6b7b3c5"
+		},
+		{
+			"uuid": "bbc97122-5c8e-4253-9f41-30892b43dba6",
+			"title": "When closing inventory with grabbed item, drop it",
+			"description": "",
+			"category": "908b53a1-6c56-446a-9c98-29ec3a762855"
+		},
+		{
+			"uuid": "aa86da12-0c85-4886-b1ca-90a0553b2514",
+			"title": "Change mouse interactions to InputMap actions so that they can be rebinded by the user in options.",
+			"description": "",
+			"category": "908b53a1-6c56-446a-9c98-29ec3a762855"
+		},
+		{
+			"uuid": "35c92e2f-e505-42bb-a980-1cc6baf44088",
+			"title": "Inventory DB",
+			"description": "",
+			"category": "908b53a1-6c56-446a-9c98-29ec3a762855"
 		}
 	],
 	"layout": {

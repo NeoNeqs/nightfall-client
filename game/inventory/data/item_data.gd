@@ -1,0 +1,2 @@
+extends ActionData
+class_name ItemData

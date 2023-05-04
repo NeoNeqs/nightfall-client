@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bqxrssauwnjot"]
 
 [ext_resource type="Texture2D" uid="uid://b23sjsajs5xuo" path="res://game/items/hp_potion-icon.tres" id="1_nek4p"]
-[ext_resource type="Script" path="res://game/inventory/item_data.gd" id="2_byh0o"]
+[ext_resource type="Script" path="res://game/inventory/data/item_data.gd" id="2_byh0o"]
 
 [resource]
 script = ExtResource("2_byh0o")
 display_name = "Health Potion"
 id = "nf:hp_potion"
 icon = ExtResource("1_nek4p")
-stack_size = 20
+max_capacity = 20

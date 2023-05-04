@@ -16,12 +16,15 @@ var display_name: String
 @export
 var slot_data: Array[SlotData] = []
 
+@export
+var item_blacklist: Array[Script] = []
+
 func on_slot_clicked(index: int, button_index: int) -> void:
 	interacted.emit(self, index, button_index)
 
 func slot_pop(index: int) -> SlotData:
 	var slot := slot_data[index]
-
+	
 	if slot:
 		slot_data[index] = null
 		updated.emit(self)
@@ -47,7 +50,7 @@ func slot_pull_half(index: int) -> SlotData:
 
 func slot_pull(index: int, grabbed_slot_data: SlotData, amount: int) -> SlotData:
 	var slot := slot_data[index]
-
+	
 	var return_slot: SlotData
 	if slot:
 		if slot.can_be_stacked_with(grabbed_slot_data):
@@ -66,3 +69,18 @@ func slot_pull(index: int, grabbed_slot_data: SlotData, amount: int) -> SlotData
 
 func slot_pull_max(index: int, grabbed_slot_data: SlotData) -> SlotData:
 	return slot_pull(index, grabbed_slot_data, grabbed_slot_data.quantity)
+
+func add_item(p_action_data: ActionData, amount: int) -> void:
+	if item_blacklist.any(func(type): return is_instance_of(p_action_data, type)):
+		return
+	
+	var index := slot_data.find(null)
+	if index == -1:
+		return
+	
+	var new_slot := SlotData.new()
+	new_slot.action_data = p_action_data
+	new_slot.quantity = amount
+	slot_data[index] = new_slot
+	
+	updated.emit(self)

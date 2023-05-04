@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://1yw42i04nfls"]
+[gd_scene load_steps=5 format=3 uid="uid://1yw42i04nfls"]
 
 [ext_resource type="Script" path="res://game/character/character.gd" id="1_tob6o"]
+[ext_resource type="PackedScene" uid="uid://bltmsccc3yfae" path="res://game/inventory/inventory_component.tscn" id="2_axtf1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_672h6"]
 radius = 1.0
@@ -11,7 +12,7 @@ radius = 1.0
 height = 4.0
 
 [node name="Character" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.295, 0, 0)
+velocity = Vector3(0, -96.0395, 0)
 script = ExtResource("1_tob6o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -19,3 +20,5 @@ shape = SubResource("CapsuleShape3D_672h6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_uwgsa")
+
+[node name="InventoryComponent" parent="." instance=ExtResource("2_axtf1")]

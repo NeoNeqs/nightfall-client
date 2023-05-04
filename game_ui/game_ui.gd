@@ -39,6 +39,8 @@ func on_inventory_interacted(inventory_data: InventoryData, index: int,
 				index, 
 				grabbed_slot_data
 			)
+		# This needs to trigger `use` function on an item insteaf of picking item
+		# Change pick up 1 item to shift right click / middle click ?
 		# Pick up 1 item
 		[null, MOUSE_BUTTON_RIGHT]:
 			grabbed_slot_data = inventory_data.slot_pull_half(index)

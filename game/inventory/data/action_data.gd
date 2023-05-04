@@ -1,5 +1,5 @@
 extends Resource
-class_name ItemData
+class_name ActionData
 
 @export var display_name: String = "":
 	set(new_display_name):
@@ -14,11 +14,16 @@ class_name ItemData
 
 @export var icon: Texture2D = null
 
-@export var stack_size: int = 1:
-	set(new_stack_size):
-		if new_stack_size < 1:
-			new_stack_size = 1
-			Logger.warning(Messages.ITEM_DATA_INVALID_STACK_SIZE % [
-				id, stack_size, stack_size
+#max_usage
+@export var max_capacity: int = 1:
+	set(new_max_capacity):
+		if new_max_capacity < 1:
+			new_max_capacity = 1
+			Logger.warning(Messages.ITEM_DATA_INVALID_MAX_CAPACITY % [
+				id, max_capacity, max_capacity
 			])
-		stack_size = new_stack_size
+		max_capacity = new_max_capacity
+
+
+func use() -> void:
+	pass

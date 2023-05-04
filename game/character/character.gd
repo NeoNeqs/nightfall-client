@@ -5,8 +5,8 @@ signal inventory_toggled()
 
 @export
 var inventory_data: InventoryData:
-	set(new_inventory_data):
-		inventory_data = new_inventory_data
+	get: return $InventoryComponent.inventory_data
+	set(value): $InventoryComponent.inventory_data = value
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -17,6 +17,8 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("toggle_inventory"):
 		inventory_toggled.emit()
+	#if Input.is_action_just_pressed("add_item"):
+	#	inventory_data.add_item(preload("res://game/spells/fire_ball-spell.tres"), 1)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

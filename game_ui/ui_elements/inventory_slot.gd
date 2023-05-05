@@ -11,7 +11,6 @@ func set_data(p_slot_data: SlotData) -> void:
 	else:
 		$QuantityVisualizer.text = ""
 
-
 func _gui_input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton:
 		return

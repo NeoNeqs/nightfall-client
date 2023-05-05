@@ -1,3 +1,4 @@
+@tool
 extends Resource
 class_name SlotData
 
@@ -35,12 +36,13 @@ func _set_quantity(new_quantity: int) -> void:
 		Logger.error(Messages.SLOT_DATA_NO_ITEM_DATA % [self])
 		return
 	
-	if new_quantity < 0:
-		quantity = 0
-		Logger.warning(Messages.SLOT_DATA_NO_QUANTITY % [
-			new_quantity, action_data.id, quantity
-		])
-		return
+#	if new_quantity < 1:
+#		unreference()
+#		quantity = 1
+#		Logger.warning(Messages.SLOT_DATA_NO_QUANTITY % [
+#			new_quantity, action_data.id, quantity, quantity
+#		])
+#		return
 	
 	if new_quantity > action_data.max_capacity:
 		Logger.error(Messages.SLOT_DATA_MAX_CAPACITY_EXCEEDED % [action_data.max_capacity, action_data.id])

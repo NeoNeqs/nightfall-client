@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c8bmwqbbib0bb"]
 
-[ext_resource type="Texture2D" uid="uid://d1a3vwopfj8gx" path="res://game/items/dagger-icon.tres" id="1_bsfhn"]
-[ext_resource type="Script" path="res://game/inventory/data/item_data.gd" id="1_doobm"]
+[ext_resource type="Texture2D" uid="uid://d1a3vwopfj8gx" path="res://game/items/dagger-item-icon.tres" id="1_bsfhn"]
+[ext_resource type="Script" path="res://data/item_data.gd" id="1_doobm"]
 
 [resource]
 script = ExtResource("1_doobm")
+durability = 182
 display_name = "Dagger"
 id = "nf:dagger"
 icon = ExtResource("1_bsfhn")

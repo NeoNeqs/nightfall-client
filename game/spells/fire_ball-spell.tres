@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpellData" load_steps=3 format=3 uid="uid://41ymx4ovu42w"]
 
-[ext_resource type="Script" path="res://game/inventory/data/spell_data.gd" id="1_0nap3"]
+[ext_resource type="Script" path="res://data/spell_data.gd" id="1_0nap3"]
 [ext_resource type="Texture2D" uid="uid://c0vyw8w0n1jh" path="res://game/spells/fire_ball-spell-icon.tres" id="1_5k83e"]
 
 [resource]

@@ -28,6 +28,7 @@ func slot_pop(index: int) -> SlotData:
 	if slot:
 		slot_data[index] = null
 		updated.emit(self)
+	
 	return slot
 
 func slot_pull_half(index: int) -> SlotData:
@@ -84,3 +85,10 @@ func add_item(p_action_data: ActionData, amount: int) -> void:
 	slot_data[index] = new_slot
 	
 	updated.emit(self)
+
+
+func slot_use(index: int) -> void:
+	var slot := slot_data[index]
+	
+	if slot:
+		slot.action_data.use()

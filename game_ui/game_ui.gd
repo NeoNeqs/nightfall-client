@@ -6,7 +6,6 @@ var grabbed_slot_data: SlotData
 @onready var inventory = $Inventory as Inventory
 @onready var grabbed_slot = $GrabbedSlot as InventorySlot
 
-
 func _physics_process(_delta: float) -> void:
 	if not grabbed_slot.visible:
 		return
@@ -43,7 +42,8 @@ func on_inventory_interacted(inventory_data: InventoryData, index: int,
 		# Change pick up 1 item to shift right click / middle click ?
 		# Pick up 1 item
 		[null, MOUSE_BUTTON_RIGHT]:
-			grabbed_slot_data = inventory_data.slot_pull_half(index)
+			#grabbed_slot_data = inventory_data.slot_pull_half(index)
+			inventory_data.slot_use(index)
 		# Place 1 item
 		[_, MOUSE_BUTTON_RIGHT]:
 			grabbed_slot_data = inventory_data.slot_pull(

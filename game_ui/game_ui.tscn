@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game_ui/game_ui.gd" id="1_16ulh"]
 [ext_resource type="PackedScene" uid="uid://ctwiav4y6btdj" path="res://game_ui/ui_elements/inventory/inventory.tscn" id="2_j2som"]
-[ext_resource type="PackedScene" uid="uid://k31e3y2uykc4" path="res://game_ui/ui_elements/inventory/inventory_slot.tscn" id="3_3wbvr"]
+[ext_resource type="PackedScene" uid="uid://k31e3y2uykc4" path="res://game_ui/ui_elements/inventory_slot.tscn" id="3_3wbvr"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3

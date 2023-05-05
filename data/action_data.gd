@@ -25,5 +25,6 @@ class_name ActionData
 		max_capacity = new_max_capacity
 
 
-func use() -> void:
-	pass
+func use() -> int:
+	Logger.error(Messages.NOT_IMPLEMENTED.format(get_stack()[-2]))
+	return 0

@@ -24,5 +24,5 @@ func fill_item_grid(p_inventory_data: InventoryData) -> void:
 		slot.set_data(slot_data)
 
 func create_slot() -> InventorySlot:
-	const slot_scene := preload("res://game_ui/ui_elements/inventory/inventory_slot.tscn")
+	const slot_scene := preload("res://game_ui/ui_elements/inventory_slot.tscn")
 	return slot_scene.instantiate()

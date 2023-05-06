@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://carm8v1c5mo6c"]
+
+[ext_resource type="Texture2D" uid="uid://d1a3vwopfj8gx" path="res://game/items/icons/dagger-item-icon.tres" id="1_bsfhn"]
+[ext_resource type="Script" path="res://data/weapon.gd" id="1_c4e5i"]
+
+[resource]
+script = ExtResource("1_c4e5i")
+damage = 13
+id = "nf:dagger"
+display_name = "Dagger"
+icon = ExtResource("1_bsfhn")
+quantity = 1
+max_usage = 1

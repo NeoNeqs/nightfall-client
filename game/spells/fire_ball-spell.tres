@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://c33m6jfiqcm8l"]
+
+[ext_resource type="Script" path="res://data/spell.gd" id="1_5ee0y"]
+[ext_resource type="Texture2D" uid="uid://c0vyw8w0n1jh" path="res://game/spells/fire_ball-spell-icon.tres" id="1_8kowy"]
+
+[resource]
+script = ExtResource("1_5ee0y")
+cooldown = 0.5
+id = "nf:fire_ball_spell"
+display_name = "Fire Ball"
+icon = ExtResource("1_8kowy")
+max_capacity = 1

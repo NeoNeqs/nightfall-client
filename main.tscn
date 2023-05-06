@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://mojic06bqwie"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ojmw0"]
-[ext_resource type="PackedScene" uid="uid://d3xi5i6j22rsg" path="res://game_ui/game_ui.tscn" id="2_bl8te"]
+[ext_resource type="Script" path="res://world.gd" id="2_4i3c6"]
 [ext_resource type="PackedScene" uid="uid://1yw42i04nfls" path="res://game/character/character.tscn" id="2_fgvrp"]
 [ext_resource type="Script" path="res://data/spell.gd" id="3_gpapt"]
 [ext_resource type="Script" path="res://data/inventory_data.gd" id="4_wqabp"]
@@ -14,14 +14,59 @@ display_name = ""
 items = Array[Resource("res://data/item.gd")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 item_blacklist = Array[Script]([ExtResource("3_gpapt")])
 
-[node name="Main" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_464lj"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_248aw"]
+albedo_color = Color(0, 0.627451, 0.294118, 1)
+metallic = 1.0
+emission_enabled = true
+emission = Color(0, 0.305882, 0.301961, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l2f4n"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_edv4s"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_a4b7l"]
+sky_material = SubResource("ProceduralSkyMaterial_edv4s")
+
+[sub_resource type="Environment" id="Environment_8ktyn"]
+background_mode = 2
+sky = SubResource("Sky_a4b7l")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node"]
 script = ExtResource("1_ojmw0")
 
-[node name="Character" parent="." instance=ExtResource("2_fgvrp")]
+[node name="World" type="Node3D" parent="."]
+script = ExtResource("2_4i3c6")
+
+[node name="Character" parent="World" instance=ExtResource("2_fgvrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45028, 0)
 inventory_data = SubResource("Resource_h4r6m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
+shape = SubResource("BoxShape3D_464lj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_248aw")
+mesh = SubResource("BoxMesh_l2f4n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 5.18076, -22.6779)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_8ktyn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GameUI" parent="CanvasLayer" instance=ExtResource("2_bl8te")]
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("8_hh4xy")]
 
-[connection signal="inventory_toggled" from="Character" to="." method="_on_character_inventory_toggled"]
+[connection signal="inventory_toggled" from="World/Character" to="." method="_on_character_inventory_toggled"]

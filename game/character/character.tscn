@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://1yw42i04nfls"]
+[gd_scene load_steps=8 format=3 uid="uid://1yw42i04nfls"]
 
 [ext_resource type="Script" path="res://game/character/character.gd" id="1_tob6o"]
+[ext_resource type="Script" path="res://game/character/arm_pivot.gd" id="2_7wdc6"]
 [ext_resource type="PackedScene" uid="uid://bltmsccc3yfae" path="res://game/inventory/inventory_component.tscn" id="2_axtf1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_672h6"]
@@ -11,6 +12,11 @@ height = 4.0
 radius = 1.0
 height = 4.0
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a24x8"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_6m8mq"]
+slide_on_slope = true
+
 [node name="Character" type="CharacterBody3D"]
 velocity = Vector3(0, -96.0395, 0)
 script = ExtResource("1_tob6o")
@@ -20,5 +26,21 @@ shape = SubResource("CapsuleShape3D_672h6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_uwgsa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.426, -0.992)
+mesh = SubResource("CapsuleMesh_a24x8")
+
+[node name="Pivot" type="Node3D" parent="."]
+script = ExtResource("2_7wdc6")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32458, 0)
+shape = SubResource("SeparationRayShape3D_6m8mq")
+spring_length = 10.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="Pivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.651515, 0)
 
 [node name="InventoryComponent" parent="." instance=ExtResource("2_axtf1")]

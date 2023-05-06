@@ -3,38 +3,16 @@
 [ext_resource type="Script" path="res://main.gd" id="1_ojmw0"]
 [ext_resource type="PackedScene" uid="uid://d3xi5i6j22rsg" path="res://game_ui/game_ui.tscn" id="2_bl8te"]
 [ext_resource type="PackedScene" uid="uid://1yw42i04nfls" path="res://game/character/character.tscn" id="2_fgvrp"]
-[ext_resource type="Script" path="res://data/spell_data.gd" id="3_v4dx3"]
+[ext_resource type="Script" path="res://data/spell.gd" id="3_gpapt"]
 [ext_resource type="Script" path="res://data/inventory_data.gd" id="4_wqabp"]
-[ext_resource type="Resource" uid="uid://bqxrssauwnjot" path="res://game/items/hp_potion-item.tres" id="5_nhuok"]
-[ext_resource type="Script" path="res://data/slot_data.gd" id="6_jc01i"]
-[ext_resource type="Resource" uid="uid://c8bmwqbbib0bb" path="res://game/items/dagger-item.tres" id="7_qeyps"]
-
-[sub_resource type="Resource" id="Resource_q67hq"]
-script = ExtResource("6_jc01i")
-action_data = ExtResource("5_nhuok")
-quantity = 9
-
-[sub_resource type="Resource" id="Resource_3sa23"]
-script = ExtResource("6_jc01i")
-action_data = ExtResource("5_nhuok")
-quantity = 19
-
-[sub_resource type="Resource" id="Resource_lmap7"]
-script = ExtResource("6_jc01i")
-action_data = ExtResource("7_qeyps")
-quantity = 1
-
-[sub_resource type="Resource" id="Resource_0tbnh"]
-script = ExtResource("6_jc01i")
-action_data = ExtResource("7_qeyps")
-quantity = 1
+[ext_resource type="PackedScene" uid="uid://d3xi5i6j22rsg" path="res://game_ui/game_ui.tscn" id="8_hh4xy"]
 
 [sub_resource type="Resource" id="Resource_h4r6m"]
 script = ExtResource("4_wqabp")
-columns = 3
+columns = 9
 display_name = ""
-slot_data = Array[ExtResource("6_jc01i")]([SubResource("Resource_q67hq"), SubResource("Resource_3sa23"), SubResource("Resource_lmap7"), SubResource("Resource_0tbnh"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
-item_blacklist = Array[Script]([ExtResource("3_v4dx3")])
+items = Array[Resource("res://data/item.gd")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+item_blacklist = Array[Script]([ExtResource("3_gpapt")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ojmw0")

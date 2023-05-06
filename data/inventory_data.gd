@@ -4,91 +4,91 @@ class_name InventoryData
 signal updated(inventory_data: InventoryData)
 signal interacted(inventory_data: InventoryData, index: int, buttton_index: int)
 
-const MIN_COLUMNS := 1
-const MAX_COLUMNS := 9
+@export var columns: int = 9
+@export var display_name: String
+@export var items: Array[Item] = []
+@export var item_blacklist: Array[Script] = []
 
-@export_range(MIN_COLUMNS, MAX_COLUMNS, 1)
-var columns: int = 9
-
-@export
-var display_name: String
-
-@export
-var slot_data: Array[SlotData] = []
-
-@export
-var item_blacklist: Array[Script] = []
-
-func on_slot_clicked(index: int, button_index: int) -> void:
-	interacted.emit(self, index, button_index)
-
-func slot_pop(index: int) -> SlotData:
-	var slot := slot_data[index]
-	
-	if slot:
-		slot_data[index] = null
-		updated.emit(self)
-	
-	return slot
-
-func slot_pull_half(index: int) -> SlotData:
-	var slot := slot_data[index]
-	
-	if not slot:
-		return null
-	
-	var return_slot: SlotData
-	if slot.quantity > 1:
-		slot_data[index] = slot.duplicate()
-		slot_data[index].quantity = 0
-		return_slot = slot_data[index].transfer_quantity(slot, int(slot.quantity / 2.0))
-	else:
-		slot_data[index] = null
-		return_slot = slot
-	
-	updated.emit(self)
-	return return_slot
-
-func slot_pull(index: int, grabbed_slot_data: SlotData, amount: int) -> SlotData:
-	var slot := slot_data[index]
-	
-	var return_slot: SlotData
-	if slot:
-		if slot.can_be_stacked_with(grabbed_slot_data):
-			return_slot = slot.transfer_quantity(grabbed_slot_data, amount)
-		else:
-			# Items can't stack, swap them instead
-			slot_data[index] = grabbed_slot_data
-			return_slot = slot
-	else:
-		slot_data[index] = grabbed_slot_data.duplicate()
-		slot_data[index].quantity = 0
-		return_slot = slot_data[index].transfer_quantity(grabbed_slot_data, amount)
-
-	updated.emit(self)
-	return return_slot
-
-func slot_pull_max(index: int, grabbed_slot_data: SlotData) -> SlotData:
-	return slot_pull(index, grabbed_slot_data, grabbed_slot_data.quantity)
-
-func add_item(p_action_data: ActionData, amount: int) -> void:
-	if item_blacklist.any(func(type): return is_instance_of(p_action_data, type)):
+func add_item(p_item: Item) -> void:
+	if _is_item_blacklisted(p_item):
 		return
 	
-	var index := slot_data.find(null)
+	var index := items.find(null)
+	# return error ERR_FULL ?
 	if index == -1:
 		return
 	
-	var new_slot := SlotData.new()
-	new_slot.action_data = p_action_data
-	new_slot.quantity = amount
-	slot_data[index] = new_slot
+	items[index] = p_item
 	
 	updated.emit(self)
 
+func set_item(index: int, p_item: Item) -> void:
+	items[index] = p_item
 
-func slot_use(index: int) -> void:
-	var slot := slot_data[index]
+func on_item_clicked(index: int, button_index: int) -> void:
+	interacted.emit(self, index, button_index)
+
+func item_pop(index: int) -> Item:
+	var item := items[index]
 	
-	if slot:
-		slot.action_data.use()
+	if item:
+		items[index] = null
+		updated.emit(self)
+	
+	return item
+
+#func item_pull_half(index: int) -> Item:
+#	var item := items[index]
+#
+#	if not item:
+#		return null
+#
+#	var return_item: Item
+#	if item.quantity > 1:
+#		items[index] = item.duplicate()
+#		items[index].quantity = 0
+#		return_item = items[index].stack(item, int(item.quantity / 2.0))
+#	else:
+#		items[index] = null
+#		return_item = item
+#
+#	updated.emit(self)
+#	return return_item
+
+func item_pull(index: int, grabbed_item: Item, quantity: int) -> Item:
+	var item := items[index]
+	
+	var return_item: Item
+	if not item:
+		items[index] = grabbed_item.duplicate()
+		items[index].quantity = 0
+		return_item = items[index].stack(grabbed_item, quantity)
+		updated.emit(self)
+		return return_item
+	
+	if item.can_be_stacked_with(grabbed_item):
+		return_item = item.stack(grabbed_item, quantity)
+	else:
+		# Items can't stack, swap them instead
+		items[index] = grabbed_item
+		return_item = item
+	
+	updated.emit(self)
+	return return_item
+
+func item_pull_max(index: int, grabbed_item: Item) -> Item:
+	return item_pull(index, grabbed_item, grabbed_item.quantity)
+
+func item_use(index: int) -> void:
+	var item := items[index]
+	
+	if not item:
+		return
+	
+	item.quantity -= item.use()
+	if item.quantity < 1:
+		items[index] = null
+	updated.emit(self)
+
+func _is_item_blacklisted(p_item: Item) -> bool:
+	return item_blacklist.any(func(type): return is_instance_of(p_item, type))

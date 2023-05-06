@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bqxrssauwnjot"]
+[gd_resource type="Resource" script_class="Potion" load_steps=3 format=3 uid="uid://c4f5k8g2l3hs1"]
 
-[ext_resource type="Texture2D" uid="uid://b23sjsajs5xuo" path="res://game/items/hp_potion-item-icon.tres" id="1_nek4p"]
-[ext_resource type="Script" path="res://data/item_data.gd" id="2_byh0o"]
+[ext_resource type="Texture2D" uid="uid://b23sjsajs5xuo" path="res://game/items/icons/hp_potion-item-icon.tres" id="1_rubog"]
+[ext_resource type="Script" path="res://data/potion.gd" id="1_xw4s3"]
 
 [resource]
-script = ExtResource("2_byh0o")
+script = ExtResource("1_xw4s3")
+restore_amount = 120
+id = "nf:health_potion"
 display_name = "Health Potion"
-id = "nf:hp_potion"
-icon = ExtResource("1_nek4p")
-max_capacity = 20
+icon = ExtResource("1_rubog")
+quantity = 1
+max_usage = 20

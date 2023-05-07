@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfjl6bjl5sn6a"]
+
+[ext_resource type="PackedScene" uid="uid://k31e3y2uykc4" path="res://game_ui/ui_elements/inventory_slot.tscn" id="1_xyfl6"]
+[ext_resource type="Script" path="res://game_ui/ui_elements/drag_slot.gd" id="2_xn0hs"]
+
+[node name="DragSlot" instance=ExtResource("1_xyfl6")]
+script = ExtResource("2_xn0hs")

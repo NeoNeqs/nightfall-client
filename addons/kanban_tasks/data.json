@@ -27,23 +27,23 @@
 			"title": "Todo",
 			"tasks": [
 				"2ef99e43-5466-4760-a977-7a8897ab1898",
-				"54d38df4-4f0d-486d-914b-94a86c912827",
-				"bbc97122-5c8e-4253-9f41-30892b43dba6",
-				"aa86da12-0c85-4886-b1ca-90a0553b2514",
-				"35c92e2f-e505-42bb-a980-1cc6baf44088"
+				"bbef1017-d5f8-47b5-942d-9c59a7a060f2",
+				"bbc97122-5c8e-4253-9f41-30892b43dba6"
 			]
 		},
 		{
 			"uuid": "8dfb3b2e-bcb2-477a-9dd0-85a1728f396d",
 			"title": "Doing",
-			"tasks": [
-				"bbef1017-d5f8-47b5-942d-9c59a7a060f2"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "5869e66e-fdc6-402b-a2fc-274d4e22ac53",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"54d38df4-4f0d-486d-914b-94a86c912827",
+				"35c92e2f-e505-42bb-a980-1cc6baf44088",
+				"aa86da12-0c85-4886-b1ca-90a0553b2514"
+			]
 		}
 	],
 	"tasks": [

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://mojic06bqwie"]
+[gd_scene load_steps=15 format=3 uid="uid://mojic06bqwie"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ojmw0"]
 [ext_resource type="Script" path="res://world.gd" id="2_4i3c6"]
@@ -9,10 +9,19 @@
 
 [sub_resource type="Resource" id="Resource_h4r6m"]
 script = ExtResource("4_wqabp")
-columns = 9
+columns = 5
 display_name = ""
-items = Array[Resource("res://data/item.gd")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[Resource("res://data/item.gd")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 item_blacklist = Array[Script]([ExtResource("3_gpapt")])
+persistent = true
+
+[sub_resource type="Resource" id="Resource_uk6up"]
+script = ExtResource("4_wqabp")
+columns = 5
+display_name = ""
+items = Array[Resource("res://data/item.gd")]([null, null, null, null, null])
+item_blacklist = Array[Script]([])
+persistent = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_464lj"]
 size = Vector3(100, 0.5, 100)
@@ -48,6 +57,7 @@ script = ExtResource("2_4i3c6")
 [node name="Character" parent="World" instance=ExtResource("2_fgvrp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45028, 0)
 inventory_data = SubResource("Resource_h4r6m")
+hotbar_data = SubResource("Resource_uk6up")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World"]
 

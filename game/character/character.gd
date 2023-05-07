@@ -6,9 +6,8 @@ signal inventory_toggled()
 @onready var pivot: Node3D = $Pivot
 @onready var model: MeshInstance3D = $MeshInstance3D
 
-@export var inventory_data: InventoryData:
-	get: return $InventoryComponent.inventory_data
-	set(value): $InventoryComponent.inventory_data = value
+@export var inventory_data: InventoryData
+@export var hotbar_data: InventoryData
 
 const SPEED = 15.0
 const JUMP_VELOCITY = 12.0
@@ -21,15 +20,32 @@ func _ready() -> void:
 	var health_potion := ItemDB.get_item("nf:health_potion")
 	health_potion.quantity = 20
 	
-	inventory_data.add_item(
-		health_potion
-	)
+	inventory_data.add_item(health_potion)
+	inventory_data.add_item(health_potion.duplicate())
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_key_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("toggle_inventory"):
 		inventory_toggled.emit()
 
+
+var s := ""
+var s2 := ""
+
 func _physics_process(delta: float) -> void:
+	s = ""
+	for item in inventory_data.items:
+		if item:
+			s += item.id + " "
+		else:
+			s += "- "
+		
+	s2 = ""
+	for item in hotbar_data.items:
+		if item:
+			s2 += item.id + " "
+		else:
+			s2 += "- "
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -46,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		
-		# Interpolate from model look dir to character look dir
+		# Interpolate from model look direction to character look direction
 		var model_rotation := Quaternion(model.transform.basis)
 		var character_rotatation := Quaternion(
 			Basis(Vector3.UP, atan2(-velocity.x, -velocity.z))
@@ -59,3 +75,9 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+
+func _on_timer_timeout() -> void:
+	print("INV:")
+	print(s)
+	print("HOT:")
+	print(s2)
